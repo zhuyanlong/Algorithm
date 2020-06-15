@@ -48,6 +48,13 @@ class BTree:
             print(x.val)
         else:
             return
+    def maxDepth(self, root):
+        if root==None:
+            return 0
+        else:
+            leftnode=self.maxDepth(self,root.left)
+            rightnode=self.maxDepth(self,root.right)
+        return max(leftnode+1,rightnode+1)
 
 def main():
     t=BTree()
