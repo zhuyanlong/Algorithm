@@ -1,10 +1,11 @@
 #二叉搜索树，普通二叉树插着没意义
 #不知为何它的后序遍历和我理论得出的后序遍历是不一样的
+# Definition for a binary tree node.
 class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class BTree:
     def __init__(self):
         self.root=None
@@ -55,6 +56,25 @@ class BTree:
             leftnode=self.maxDepth(self,root.left)
             rightnode=self.maxDepth(self,root.right)
         return max(leftnode+1,rightnode+1)
+    def BFS(self,root):
+        res=[]
+        queue=[root]
+        if root!=None:
+            res.append(root.val)
+        while queue:
+            tmp=queue[0]
+            del queue[0]
+            if tmp.left!=None:
+                queue.append(tmp.left)
+                res.append(queue[-1].val)
+            else:
+                res.append(None)
+            if tmp.right!=None:
+                queue.append(tmp.right)
+                res.append(queue[-1].val)
+            else:
+                res.append(None)
+        print(res)
 
 def main():
     t=BTree()
